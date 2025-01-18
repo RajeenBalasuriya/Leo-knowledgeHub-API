@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+import {IUser} from '../../../interfaces/user.interface'
 
-export class CreateUserDto {
+export class CreateUserDto implements IUser{
     @IsString()
     @IsNotEmpty()
     name: string;
@@ -12,4 +13,7 @@ export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
     role: any;
+
+    @IsNotEmpty()
+    password:string;
 }

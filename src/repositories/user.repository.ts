@@ -4,10 +4,11 @@ import { ClientSession, Model, Schema as MongooseSchema } from 'mongoose';
 import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../modules/user/dto/createUser.dto';
 
+
 export class UserRepository {
     constructor(@InjectModel(User.name) private readonly userModel: Model<User>) {}
 
-    async createUser(createUserDto: CreateUserDto, session: ClientSession) {
+    async createUser(createUserDto: CreateUserDto, session: ClientSession):Promise<User>{
         let user = await this.getUserByEmail(createUserDto.email);
 
         if (user) {
@@ -18,6 +19,7 @@ export class UserRepository {
             name: createUserDto.name,
             email: createUserDto.email,
             role: createUserDto.role,
+            password:createUserDto.password
         });
 
         try {
@@ -33,7 +35,7 @@ export class UserRepository {
         return user;
     }
 
-    async getUserById(id: MongooseSchema.Types.ObjectId) {
+    async getUserById(id: MongooseSchema.Types.ObjectId):Promise<User>{
         let user;
         try {
             user = await this.userModel.findById({ _id: id });
@@ -48,10 +50,10 @@ export class UserRepository {
         return user;
     }
 
-    async getUserByEmail(email: string) {
+    async getUserByEmail(email: string):Promise<User>{
         let user;
         try {
-            user = await this.userModel.findOne({ email }, 'name email img role').exec();
+            user = await this.userModel.findOne({ email }, 'name email img role password').exec();
         } catch (error) {
             throw new InternalServerErrorException(error);
         }

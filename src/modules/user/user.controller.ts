@@ -5,9 +5,10 @@ import { Connection, Schema as MongooseSchema } from 'mongoose';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UserService } from './user.service';
 
+
 @Controller('user')
 export class UserController {
-    constructor(@InjectConnection() private readonly mongoConnection: Connection, private userService: UserService) {}
+    constructor(@InjectConnection() private readonly mongoConnection: Connection, private userService: UserService,) {}
 
     @Post('/createUser')
     async createUser(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
@@ -25,9 +26,19 @@ export class UserController {
         }
     }
 
-    @Get('/getUserById/:id')
-    async getCompanyById(@Param('id') id: MongooseSchema.Types.ObjectId, @Res() res: Response) {
-        const user: any = await this.userService.getUserById(id);
-        return res.status(HttpStatus.OK).send(user);
+
+  @Post('/getUserByEmail')  // Change to POST since we are using the request body
+  async getUserByEmail(@Body() body: { email: string }, @Res() res: Response) {
+    const { email } = body;
+    const user = await this.userService.getUserByEmail(email);  // Assuming a method like getUserByEmail exists in your service
+    if (!user) {
+      return res.status(HttpStatus.NOT_FOUND).send({ message: 'User not found' });
     }
+    return res.status(HttpStatus.OK).send(user);
+  }
+
+  
+
+
+   
 }
