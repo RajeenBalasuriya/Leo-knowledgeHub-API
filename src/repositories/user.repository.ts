@@ -51,9 +51,11 @@ export class UserRepository {
     }
 
     async getUserByEmail(email: string):Promise<User>{
+
         let user;
         try {
             user = await this.userModel.findOne({ email }, 'name email img role password').exec();
+            
         } catch (error) {
             throw new InternalServerErrorException(error);
         }

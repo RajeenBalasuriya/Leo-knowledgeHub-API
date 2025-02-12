@@ -9,5 +9,7 @@ async function bootstrap() {
   await app.listen(3000);
   //application port log
   console.log(`Apllication listening on port :${await configService.getPortConfig()}`);
+
+  
 }
 bootstrap();
