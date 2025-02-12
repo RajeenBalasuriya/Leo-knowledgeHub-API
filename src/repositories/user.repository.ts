@@ -8,7 +8,7 @@ import { CreateUserDto } from '../modules/user/dto/createUser.dto';
 export class UserRepository {
     constructor(@InjectModel(User.name) private readonly userModel: Model<User>) {}
 
-    async createUser(createUserDto: CreateUserDto, session: ClientSession):Promise<User>{
+    async createUser(createUserDto: CreateUserDto):Promise<User>{
         let user = await this.getUserByEmail(createUserDto.email);
 
         if (user) {
@@ -23,7 +23,7 @@ export class UserRepository {
         });
 
         try {
-            user = await user.save({ session });
+            user = await user.save();
         } catch (error) {
             throw new InternalServerErrorException(error);
         }
