@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from './config/config.service';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { CoursesModule } from './modules/courses/courses.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { AuthModule } from './modules/auth/auth.module';
       useFactory:async (configService: ConfigService) => configService.getMongoConfig()
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    CoursesModule
   ],
   controllers: [AppController],
   providers: [AppService],
