@@ -12,7 +12,7 @@ export interface IInstructor {
   
   export interface ISection {
     title: string;
-    lessons: ILesson[];
+    lessons: ILesson;
   }
   
   export interface ICourse {

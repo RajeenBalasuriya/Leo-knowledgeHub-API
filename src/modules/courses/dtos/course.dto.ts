@@ -38,7 +38,7 @@ class SectionDTO {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => LessonDTO)
-  lessons: LessonDTO[];
+  lessons: LessonDTO;
 }
 
 export class CourseDTO implements ICourse{

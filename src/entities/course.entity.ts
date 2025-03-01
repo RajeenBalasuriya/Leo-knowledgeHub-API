@@ -34,7 +34,7 @@ class Section {
   title: string;
 
   @Prop({ type: [Lesson] })
-  lessons: Lesson[];
+  lessons: Lesson;
 }
 
 // Main Course Schema

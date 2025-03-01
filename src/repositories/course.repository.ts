@@ -26,11 +26,11 @@ export class CourseRepository {
             rating: courseDto.rating,
             sections: courseDto.sections.map(section => ({
               title: section.title,
-              lessons: section.lessons.map(lesson => ({
-                title: lesson.title,
-                videoUrl: lesson.videoUrl,
-                content: lesson.content,
-              })),
+              lessons: {
+                title: section.lessons.title,
+                videoUrl: section.lessons.videoUrl,
+                content: section.lessons.content                
+              },
             })),
             enrolledStudent: courseDto.enrolledStudent || [],
           });
