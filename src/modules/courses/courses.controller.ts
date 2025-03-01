@@ -40,4 +40,9 @@ export class CoursesController {
     async getCourseByStudentID(@Body("studentID") studentID :string){
         return await this.coursesService.getCourseByStudentID(studentID);
     }
+
+    @Get('/getCourseByTitle')
+    async getCourseByTitle(@Body("title") title :string){
+        return await this.coursesService.getCourseByTitle(title);
+    }
 }

@@ -69,7 +69,7 @@ export class CourseRepository {
 
         let course;
         try {
-            course = await this.courseModel.findOne({ title }, 'name email img role password').exec();
+            course = await this.courseModel.findOne({ title });
             
         } catch (error) {
             throw new InternalServerErrorException(error);

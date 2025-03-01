@@ -24,4 +24,9 @@ export class CoursesService {
     async getCourseByStudentID(studentID :string) :Promise<ICourse[]>{
         return await  this.courseRepository.getCourseByStudentID(studentID);
     }
+
+    async getCourseByTitle(title :string) :Promise<ICourse>{
+        return await  this.courseRepository.getCourseByTitle(title);
+    }
+    
 }
