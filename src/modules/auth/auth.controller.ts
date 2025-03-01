@@ -23,7 +23,7 @@ export class AuthController {
 
    //end point to check the auth guard
 
-   @Get('/profiles')
+   @Get('/abc')
    getProfies(@Request() req){
      return "Hi";
    }
