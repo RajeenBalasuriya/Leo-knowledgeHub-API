@@ -20,4 +20,8 @@ export class CoursesService {
     async deleteCourse(_id : Types.ObjectId): Promise<ICourse>{
         return await  this.courseRepository.deleteCourse(_id);
     }
+
+    async getCourseByStudentID(studentID :string) :Promise<ICourse[]>{
+        return await  this.courseRepository.getCourseByStudentID(studentID);
+    }
 }

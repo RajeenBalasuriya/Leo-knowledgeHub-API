@@ -35,4 +35,9 @@ export class CoursesController {
       const courseId = new Types.ObjectId(_id);
       return await this.coursesService.deleteCourse(courseId);
     }
+
+    @Get('/getCourseByStudentID')
+    async getCourseByStudentID(@Body("studentID") studentID :string){
+        return await this.coursesService.getCourseByStudentID(studentID);
+    }
 }

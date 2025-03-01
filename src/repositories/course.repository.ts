@@ -93,4 +93,19 @@ export class CourseRepository {
 
         return course;
     }
+
+    async getCourseByStudentID(enrolledStudentID :string):Promise<Course[]>{
+        let courses = [];
+        try{
+            courses = await this.courseModel.find({ enrolledStudent: enrolledStudentID });
+        }catch(error){
+            throw new InternalServerErrorException(error);
+        }
+
+        if (!courses || courses.length === 0) {
+            throw new NotFoundException('Course not found');
+        }
+
+        return courses;
+    }
 }
