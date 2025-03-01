@@ -1,7 +1,8 @@
-import { BadRequestException, Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, HttpStatus, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { CoursesService } from './courses.service';
 import { CourseDTO } from './dtos/course.dto';
+import { Types, Schema } from 'mongoose';
 
 @Controller('courses')
 export class CoursesController {
@@ -11,8 +12,8 @@ export class CoursesController {
     }
 
     @Get('/all')
-    getAllCourses(){
-        return this.coursesService.getAllCourses();
+    async getAllCourses(){
+        return await this.coursesService.getAllCourses();
     }
 
     @Post('/newCourse')
@@ -23,5 +24,15 @@ export class CoursesController {
         } catch (error) {
             throw new BadRequestException(error);
         }
+    }
+
+    @Delete()
+    async deleteCourse(@Body('_id') _id: string) {  
+      if (!_id || !Types.ObjectId.isValid(_id)) {
+        throw new BadRequestException('Invalid course ID');
+      }
+  
+      const courseId = new Types.ObjectId(_id);
+      return await this.coursesService.deleteCourse(courseId);
     }
 }

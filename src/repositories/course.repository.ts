@@ -1,6 +1,6 @@
 import { ConflictException, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ClientSession, Model, Schema as MongooseSchema } from 'mongoose';
+import { ClientSession, Model, Schema as MongooseSchema , Types} from 'mongoose';
 import { Course } from '../entities/course.entity';
 import { CourseDTO } from '../modules/courses/dtos/course.dto';
 
@@ -73,6 +73,22 @@ export class CourseRepository {
             
         } catch (error) {
             throw new InternalServerErrorException(error);
+        }
+
+        return course;
+    }
+
+
+    async deleteCourse(_id :Types.ObjectId):Promise<Course>{
+        let course;
+        try {
+            course = await this.courseModel.findByIdAndDelete({ _id });
+        } catch (error) {
+            throw new InternalServerErrorException(error);
+        }
+
+        if (!course) {
+            throw new NotFoundException('Course not found');
         }
 
         return course;
