@@ -29,4 +29,7 @@ export class CoursesService {
         return await  this.courseRepository.getCourseByTitle(title);
     }
     
+    async updateCourse(courseDTO : CourseDTO) :Promise<ICourse>{
+        return await  this.courseRepository.updateCourse(courseDTO);
+    }
 }

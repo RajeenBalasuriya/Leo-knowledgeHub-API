@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, HttpStatus, Post, Res } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, HttpStatus, Post, Put, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { CoursesService } from './courses.service';
 import { CourseDTO } from './dtos/course.dto';
@@ -44,5 +44,10 @@ export class CoursesController {
     @Get('/getCourseByTitle')
     async getCourseByTitle(@Body("title") title :string){
         return await this.coursesService.getCourseByTitle(title);
+    }
+
+    @Put('/updateCourse')
+    async updateCourse(@Body() courseDTO : CourseDTO){
+        return await this.coursesService.updateCourse(courseDTO);
     }
 }

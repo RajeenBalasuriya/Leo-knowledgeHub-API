@@ -108,4 +108,19 @@ export class CourseRepository {
 
         return courses;
     }
+
+    async updateCourse(courseDTO : CourseDTO):Promise<Course>{
+        let course;
+        try {
+            course = await this.courseModel.findOneAndUpdate({ title: courseDTO.title }, courseDTO, { new: true });
+        } catch (error) {
+            throw new InternalServerErrorException(error);
+        }
+
+        if (!course) {
+            throw new NotFoundException('Course not found');
+        }
+
+        return course;
+    }
 }
