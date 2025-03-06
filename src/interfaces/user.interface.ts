@@ -3,6 +3,7 @@ export interface IUser {
     name: string;
     email: string;
     password:string;
+    policy:string;
     role: string;
     createdAt?: Date;   // Optional, as it has a default value
   }

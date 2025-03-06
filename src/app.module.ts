@@ -7,6 +7,8 @@ import { ConfigService } from './config/config.service';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CoursesModule } from './modules/courses/courses.module';
+import { PolicyModule } from './modules/policy/policy.module';
+import { CaslModule } from './casl/casl.module';
 
 @Module({
   imports: [
@@ -17,7 +19,9 @@ import { CoursesModule } from './modules/courses/courses.module';
     }),
     UserModule,
     AuthModule,
-    CoursesModule
+    CoursesModule,
+    PolicyModule,
+    CaslModule
   ],
   controllers: [AppController],
   providers: [AppService],

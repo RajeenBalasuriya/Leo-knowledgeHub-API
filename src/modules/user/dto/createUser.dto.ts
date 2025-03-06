@@ -14,6 +14,10 @@ export class CreateUserDto implements IUser{
     @IsNotEmpty()
     role: any;
 
+    @IsString()
+    @IsNotEmpty()
+    policy: string;
+
     @IsNotEmpty()
     password:string;
 }
