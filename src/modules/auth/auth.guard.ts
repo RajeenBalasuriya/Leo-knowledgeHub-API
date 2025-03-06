@@ -10,7 +10,7 @@ import { Request } from 'express';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  private readonly publicRoutes = ['/auth/login']; // Define your public routes here
+  private readonly publicRoutes = ['/auth/login','/user/createUser']; // Define your public routes here
   constructor(
     private jwtService: JwtService,
     private readonly configService: ConfigService,
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-  
+
     // Check if the current route is in the publicRoutes list
     if (this.isPublicRoute(request)) {
       return true;

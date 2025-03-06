@@ -19,6 +19,7 @@ export class UserRepository {
             name: createUserDto.name,
             email: createUserDto.email,
             role: createUserDto.role,
+            policy:createUserDto.policy,
             password:createUserDto.password
         });
 
@@ -54,7 +55,7 @@ export class UserRepository {
 
         let user;
         try {
-            user = await this.userModel.findOne({ email }, 'name email img role password').exec();
+            user = await this.userModel.findOne({ email }, 'name email img role password policy').exec();
             
         } catch (error) {
             throw new InternalServerErrorException(error);
