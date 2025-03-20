@@ -42,6 +42,7 @@ export class UserService {
         // console.log(ability.can(Action.Read,Article));
         console.log(ability.can(Action.Delete,'Course'))
         console.log(ability.can(Action.Update, 'Course', 'content'));
+        
         //   { action: Action.Update, subject: 'Course', fields: ['content'] }
         return (user);
     }

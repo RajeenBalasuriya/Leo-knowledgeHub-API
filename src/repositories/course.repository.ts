@@ -9,6 +9,7 @@ export class CourseRepository {
 
     async createUser(courseDto: CourseDTO):Promise<Course>{
         let course = await this.getCourseByTitle(courseDto.title);
+        
 
         if (course) {
             throw new ConflictException('Course title already exists');

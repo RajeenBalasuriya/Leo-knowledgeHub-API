@@ -9,6 +9,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { PolicyModule } from './modules/policy/policy.module';
 import { CaslModule } from './casl/casl.module';
+import { GatewayModule } from './modules/websocket/gateway.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { CaslModule } from './casl/casl.module';
     AuthModule,
     CoursesModule,
     PolicyModule,
-    CaslModule
+    CaslModule,
+    GatewayModule
   ],
   controllers: [AppController],
   providers: [AppService],
