@@ -27,8 +27,8 @@ class Article {
 export class UserService {
     constructor(private readonly userRepository: UserRepository,private caslAbilityFactory: CaslAbilityFactory) {}
 
-    async createUser(createUserDto: CreateUserDto, session: ClientSession):Promise<IUser>{
-        const createdUser = await this.userRepository.createUser(createUserDto, session);
+    async createUser(createUserDto: CreateUserDto):Promise<IUser>{
+        const createdUser = await this.userRepository.createUser(createUserDto);
         return createdUser;
     }
 
