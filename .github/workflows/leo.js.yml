@@ -24,6 +24,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install -g @nestjs/cli  # Install NestJS CLI globally
+    - run: npm install  # Install project dependencies
     - run: |
         touch .env
         echo "${{ secrets.LEO_KNWOLEDGE_SECRET }}" > .env
