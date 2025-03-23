@@ -38,7 +38,7 @@ export class UserService {
 
     async getUserByEmail(email:string):Promise<IUser>{
         let user= (await this.userRepository.getUserByEmail(email)).toObject();
-    
+        console.log("hi");
         // const ability = this.caslAbilityFactory.createForUser(user);
         // console.log(ability.can(Action.Read,Article));
         // console.log(ability.can(Action.Delete,Article))
