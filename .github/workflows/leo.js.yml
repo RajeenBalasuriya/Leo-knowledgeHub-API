@@ -25,6 +25,8 @@ jobs:
         cache: 'npm'
     - run: npm install -g @nestjs/cli  # Install NestJS CLI globally
     - run: npm install  # Install project dependencies
+    - run: npm install dotenv
+    - run: npm install --save-dev @types/dotenv
     - run: |
         touch .env
         echo "${{ secrets.LEO_KNWOLEDGE_SECRET }}" > .env
